@@ -5,7 +5,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { firebaseApp } from '../firebase';
 import SingUp from '../components/SignUp';
 import SignIn from '../components/SignIn';
-import Home from './Home';
+import Home from '../components/Home';
 import PrivatRoute from './PrivatRoute';
 
 const App = ({ auth, authChange }) => {
@@ -27,7 +27,7 @@ const App = ({ auth, authChange }) => {
           <Route exact path="/sign-up">
             <SingUp currentUser={auth.user} />
           </Route>
-          <PrivatRoute exact path="/app">
+          <PrivatRoute path="/app">
             <Home currentUser={auth.user} />
           </PrivatRoute>
           <Route exact path="/">

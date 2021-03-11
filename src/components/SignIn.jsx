@@ -20,14 +20,18 @@ const SignIn = ({ currentUser }) => {
       (
         <Redirect to={"/app"} />
       ) : (
-        <>
-          <form onSubmit={handleSignIn}>
-            <input name="email" type="email" />
-            <input name="password" type="password" />
-            <button type="submit">Sing In</button>
-          </form>
-          <Link to="sign-up" replace >Sign Up</Link>
-        </>
+        <div className="container pt-5">
+          <div className="row">
+            <div className="col-sm-8 col-md-6 m-auto text-center">
+              <form onSubmit={handleSignIn}>
+                <input className="form-control mb-3" name="email" type="email" placeholder="Email" />
+                <input className="form-control mb-3" name="password" type="password" placeholder="Password" />
+                <button className="btn btn-primary" type="submit">Sing In</button>
+              </form>
+              <Link className="btn btn-link" to="sign-up" replace >Sign Up</Link>
+            </div>
+          </div>
+        </div>
       )
   );
 };
