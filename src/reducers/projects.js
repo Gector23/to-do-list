@@ -13,6 +13,14 @@ const projects = (state = {}, action) => {
       return {
         ...Object.fromEntries(Object.entries(state).filter(([projectId]) => projectId !== action.projectId))
       };
+    case "UPDATE_PROJECT":
+      return {
+        ...JSON.parse(JSON.stringify(state)),
+          [action.projectId]: {
+            ...state[action.projectId],
+            ...action.data
+          }
+      };
     default:
       return state;
   }

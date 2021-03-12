@@ -8,12 +8,16 @@ export const addLocalProject = projectSnapshot => ({
   projectSnapshot
 });
 
-export const deleteLocalProject = projectId=> ({
+export const deleteLocalProject = projectId => ({
   type: "DELETE_PROJECT",
   projectId
 });
 
-
+export const updateLocalProject = (projectId, data) => ({
+  type: "UPDATE_PROJECT",
+  projectId,
+  data
+});
 
 export const getProjects = userProjectsRef => {
   return async dispatch => {
@@ -44,7 +48,8 @@ export const addProject = (userProjectsRef, projectName) => {
     try {
       const projectRef = await userProjectsRef.add({
         name: projectName,
-        tasks: []
+        tasks: [],
+        completeTasks: []
       });
 
       return dispatch(getProject(projectRef));
@@ -60,6 +65,18 @@ export const deleteProject = (userProjectsRef, projectId) => {
       await userProjectsRef.doc(projectId).delete();
 
       return dispatch(deleteLocalProject(projectId));
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
+
+export const updateProject = (userProjectsRef, projectId, data) => {
+  return async dispatch => {
+    try {
+      await userProjectsRef.doc(projectId).update(data);
+
+      return dispatch(updateLocalProject(projectId, data));
     } catch (error) {
       alert(error);
     }

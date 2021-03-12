@@ -25,11 +25,11 @@ const Projects = ({ uid, projects, getProjects, addProject, deleteProject }) => 
 
   return (
     <div>
-      <form onSubmit={handleAddProject} className="mb-3">
+      <form className="mb-3" onSubmit={handleAddProject}>
         <div className="input-group input-group-sm">
-          <input type="text" name="name" className="form-control" placeholder="Project name" />
+          <input className="form-control" type="text" name="name" placeholder="Project name" />
           <div className="input-group-append">
-            <button type="submit" className="btn btn-primary">Add</button>
+            <button className="btn btn-primary" type="submit">Add</button>
           </div>
         </div>
       </form>

@@ -9,17 +9,21 @@ const Home = ({ currentUser }) => {
 
   return (
     <>
-      <div className="container">
+      <div className="container pt-5">
         <div className="row">
-          <div className="col-3">
+          <div className="col-sm-4 col-lg-3">
             <Menu uid={currentUser.uid} />
           </div>
           <div className="col">
-            <Switch>
-              <Route exact path={`${path}/project/:projectId`}>
-                <TaskList />
-              </Route>
-            </Switch>
+            <div className="row">
+              <div className="col-md-10 mx-md-auto">
+                <Switch>
+                  <Route exact path={`${path}/project/:projectId`}>
+                    <TaskList uid={currentUser.uid} />
+                  </Route>
+                </Switch>
+              </div>
+            </div>
           </div>
         </div>
       </div>
