@@ -17,12 +17,12 @@ const TodayTask = ({ task, onCompleteTask, onCancelTask, onDeleteTask }) => {
       <div className="d-flex">
         {
           task.taskData.complete ? (
-            <Button type="primary" onClick={() => onCancelTask(task.projectId, task.taskData)} />
+            <Button type="primary" outline={true} onClick={() => onCancelTask(task.projectId, task.taskData)} />
           ) : (
-            <Button type="success" onClick={() => onCompleteTask(task.projectId, task.taskData)} />
+            <Button type="success" outline={true} onClick={() => onCompleteTask(task.projectId, task.taskData)} />
           )
         }
-        <Button type="danger" onClick={() => onDeleteTask(task.projectId, task.taskData)} />
+        <Button type="danger" outline={true} onClick={() => onDeleteTask(task.projectId, task.taskData)} />
       </div>
     </div>
   );

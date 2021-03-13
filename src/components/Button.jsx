@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Button = ({ type, onClick }) => {
+const Button = ({ type, outline, onClick }) => {
   let icon;
 
   switch (type) {
@@ -30,7 +30,7 @@ const Button = ({ type, onClick }) => {
   }
 
   return (
-    <button className={`btn btn-sm btn-outline-${type} d-flex align-items-center ml-2`} type="button" onClick={onClick}>
+    <button className={`btn btn-sm ${outline ? "btn-outline-" + type : "btn-" + type} d-flex align-items-center ml-2`} type="button" onClick={onClick}>
       {icon}
     </button>
   );

@@ -19,12 +19,12 @@ const Task = ({ taskData, onCompleteTask, onCancelTask, onDeleteTask }) => {
       <div className="d-flex">
         {
           taskData.complete ? (
-            <Button type="primary" onClick={() => onCancelTask(taskData)} />
+            <Button type="primary" outline={true} onClick={() => onCancelTask(taskData)} />
           ) : (
-            <Button type="success" onClick={() => onCompleteTask(taskData)} />
+            <Button type="success" outline={true} onClick={() => onCompleteTask(taskData)} />
           )
         }
-        <Button type="danger" onClick={() => onDeleteTask(taskData)} />
+        <Button type="danger" outline={true} onClick={() => onDeleteTask(taskData)} />
       </div>
     </div>
   );

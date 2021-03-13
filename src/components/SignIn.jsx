@@ -22,7 +22,7 @@ const SignIn = ({ currentUser }) => {
       ) : (
         <div className="container pt-5">
           <div className="row">
-            <div className="col-sm-8 col-md-6 m-auto text-center">
+            <div className="col-sm-7 col-md-5 m-auto text-center">
               <form onSubmit={handleSignIn}>
                 <input className="form-control mb-3" name="email" type="email" placeholder="Email" />
                 <input className="form-control mb-3" name="password" type="password" placeholder="Password" />

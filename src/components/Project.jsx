@@ -1,20 +1,20 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Button from './Button';
 
 const Project = ({ projectId, projectData, onProjectDelete }) => {
-  let history = useHistory();
+  const { pathname } = useLocation();
 
-  const handleClick = () => {
-    history.push(`/app/project/${projectId}`);
-  };
+  const active = pathname.split("/").includes(projectId);
 
   return (
-    <div className="d-flex mb-2">
-      <div className="flex-grow-1" onClick={handleClick}>
-        <span>{projectData.name}</span>
+    <div className="list-group">
+      <div className={`list-group-item list-group-item-action ${active ? "active" : ""} d-flex mb-2 py-1 px-2`}>
+        <Link className={`flex-grow-1 text-decoration-none ${active ? "text-white" : ""}`} to={`/app/project/${projectId}`}>
+          {projectData.name}
+        </Link>
+        <Button type="danger" outline={!active} onClick={() => onProjectDelete(projectId)} />
       </div>
-      <Button type="danger" onClick={() => onProjectDelete(projectId)} />
     </div>
   );
 };

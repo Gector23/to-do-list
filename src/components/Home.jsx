@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect, Switch, useRouteMatch } from 'react-router-dom';
-import { firebaseApp } from '../firebase';
+import Header from './Header';
 import Menu from './Menu';
 import Today from '../containers/Today';
 import ProjectTasks from '../containers/ProjectTasks';
@@ -10,14 +10,15 @@ const Home = ({ currentUser }) => {
 
   return (
     <>
-      <div className="container pt-5">
+      <Header />
+      <div className="container">
         <div className="row">
           <div className="col-sm-4 col-lg-3">
             <Menu uid={currentUser.uid} />
           </div>
           <div className="col">
             <div className="row">
-              <div className="col-md-10 mx-md-auto">
+              <div className="col-md-10 offset-md-2">
                 <Switch>
                   <Route exact path={path}>
                     <Redirect to={`${path}/today`} />
@@ -34,7 +35,6 @@ const Home = ({ currentUser }) => {
           </div>
         </div>
       </div>
-      <button className="btn btn-primary d-block mx-auto" onClick={() => firebaseApp.auth().signOut()}>Sign Out</button>
     </>
   );
 };
