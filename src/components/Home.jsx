@@ -1,8 +1,9 @@
 import React from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Route, Redirect, Switch, useRouteMatch } from 'react-router-dom';
 import { firebaseApp } from '../firebase';
 import Menu from './Menu';
-import TaskList from '../containers/TaskList';
+import Today from '../containers/Today';
+import ProjectTasks from '../containers/ProjectTasks';
 
 const Home = ({ currentUser }) => {
   const { path } = useRouteMatch();
@@ -18,8 +19,14 @@ const Home = ({ currentUser }) => {
             <div className="row">
               <div className="col-md-10 mx-md-auto">
                 <Switch>
+                  <Route exact path={path}>
+                    <Redirect to={`${path}/today`} />
+                  </Route>
+                  <Route exact path={`${path}/today`}>
+                    <Today uid={currentUser.uid} />
+                  </Route>
                   <Route exact path={`${path}/project/:projectId`}>
-                    <TaskList uid={currentUser.uid} />
+                    <ProjectTasks uid={currentUser.uid} />
                   </Route>
                 </Switch>
               </div>

@@ -6,7 +6,7 @@ import { firestore } from '../firebase';
 import CreateTask from '../components/CreateTask';
 import Task from '../components/Task';
 
-const TaskList = ({ uid, projects, updateProject }) => {
+const ProjectTasks = ({ uid, projects, updateProject }) => {
   const { projectId } = useParams();
 
   const currentProject = projects[projectId];
@@ -46,10 +46,14 @@ const TaskList = ({ uid, projects, updateProject }) => {
     });
   };
 
-  const handleDeleteTask = taskId => {
-    updateProject(firestore.collection("users").doc(uid).collection("projects"), projectId, {
-      tasks: currentProject.tasks.filter(task => task.id !== taskId)
-    });
+  const handleDeleteTask = taskData => {
+    let update = taskData.complete ? {
+      completeTasks: currentProject.completeTasks.filter(task => task.id !== taskData.id)
+    } : {
+      tasks: currentProject.tasks.filter(task => task.id !== taskData.id)
+    };
+
+    updateProject(firestore.collection("users").doc(uid).collection("projects"), projectId, update);
   };
 
   return (
@@ -57,6 +61,7 @@ const TaskList = ({ uid, projects, updateProject }) => {
       <div className="text-primary text-center">Project not found</div>
     ) : (
       <>
+        <h4 className="mb-3">{currentProject.name}</h4>
         <CreateTask projectId={projectId} onAddTask={handleAddTask} />
         {
           JSON.parse(JSON.stringify(currentProject.tasks)).sort((a, b) => a.date - b.date).map(task => (
@@ -86,4 +91,4 @@ const mapDispatchToProps = {
   updateProject
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectTasks);

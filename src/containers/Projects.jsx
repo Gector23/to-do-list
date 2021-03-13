@@ -24,7 +24,7 @@ const Projects = ({ uid, projects, getProjects, addProject, deleteProject }) => 
   };
 
   return (
-    <div>
+    <div className="mb-3">
       <form className="mb-3" onSubmit={handleAddProject}>
         <div className="input-group input-group-sm">
           <input className="form-control" type="text" name="name" placeholder="Project name" />

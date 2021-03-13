@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
 
-const Task = ({ taskData, onCompleteTask, onCancelTask, onToggleTask, onDeleteTask }) => {
+const Task = ({ taskData, onCompleteTask, onCancelTask, onDeleteTask }) => {
   let badgeColor;
 
   if (taskData.complete) badgeColor = "badge-success";
@@ -24,7 +24,7 @@ const Task = ({ taskData, onCompleteTask, onCancelTask, onToggleTask, onDeleteTa
             <Button type="success" onClick={() => onCompleteTask(taskData)} />
           )
         }
-        <Button type="danger" onClick={() => onDeleteTask(taskData.id)} />
+        <Button type="danger" onClick={() => onDeleteTask(taskData)} />
       </div>
     </div>
   );
